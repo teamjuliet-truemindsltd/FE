@@ -101,6 +101,9 @@ class AuthService {
 
   private handleError(error: unknown): Error {
     if (error instanceof Error) {
+      if (error.message.includes('409')) {
+        return new Error('Email already in use. Please try another one or sign in.');
+      }
       if (error.message.includes('401')) {
         return new Error('Unauthorized. Please login again.');
       }

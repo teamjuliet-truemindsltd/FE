@@ -1,11 +1,6 @@
 import { apiClient } from '../lib/apiClient';
 
-export interface User {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-}
+import type { User } from './authService';
 
 export interface Reply {
   id: string;

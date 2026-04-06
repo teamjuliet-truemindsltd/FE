@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, BookOpen, Loader, Trash2, Eye, EyeOff, X, FolderPlus, Pencil, Info, CheckCircle, FileText, Check, Award, Send, AlertCircle } from 'lucide-react';
+import { Plus, BookOpen, Loader, Trash2, Eye, EyeOff, X, FolderPlus, Pencil, CheckCircle, FileText, Check, Award, AlertCircle } from 'lucide-react';
 import { coursesService, type Course, type CreateCourseRequest, type CourseModule } from '../services/coursesService';
 import { lessonsService, type Lesson, type CreateLessonRequest, ContentType } from '../services/lessonsService';
 import { assignmentsService, type Assignment, type Submission, type CreateAssignmentRequest } from '../services/assignmentsService';
@@ -7,7 +7,7 @@ import { useAuthStore } from '../contexts/authContext';
 import AppLayout from '../components/layout/AppLayout';
 
 export const InstructorDashboardPage: React.FC = () => {
-  const { user } = useAuthStore();
+  const { } = useAuthStore();
   const [courses, setCourses] = useState<Course[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -38,7 +38,7 @@ export const InstructorDashboardPage: React.FC = () => {
   // Manage Module & Lesson
   const [editingModuleId, setEditingModuleId] = useState<string | null>(null);
   const [editModuleTitle, setEditModuleTitle] = useState('');
-  const [isUpdatingModule, setIsUpdatingModule] = useState(false);
+  const [, setIsUpdatingModule] = useState(false);
 
   // Manage Assignments
   const [courseAssignments, setCourseAssignments] = useState<Assignment[]>([]);

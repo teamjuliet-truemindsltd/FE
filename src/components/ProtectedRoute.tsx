@@ -8,11 +8,7 @@ interface ProtectedRouteProps {
 }
 
 export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, requiredRole }) => {
-  const { isAuthenticated, user, isLoading } = useAuthStore();
-
-  if (isLoading) {
-    return null; // The global loader in Router handles this
-  }
+  const { isAuthenticated, user } = useAuthStore();
 
   if (!isAuthenticated || !user) {
     return <Navigate to="/auth/login" replace />;

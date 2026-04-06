@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuthStore } from '../contexts/authContext';
 import ProtectedRoute from '../components/ProtectedRoute';
@@ -16,14 +16,29 @@ import InstructorDashboardPage from '../pages/InstructorDashboardPage';
 import LandingPage from '../pages/LandingPage';
 
 const Router: React.FC = () => {
-  const { isAuthenticated, isLoading, getCurrentUser } = useAuthStore();
+  const { isAuthenticated, user, isLoading, getCurrentUser } = useAuthStore();
+  const [isInitializing, setIsInitializing] = useState(true);
 
   useEffect(() => {
-    // Only fetch user if we have a token but no user object yet
-    if (isAuthenticated) {
-      getCurrentUser();
-    }
-  }, [isAuthenticated, getCurrentUser]);
+    const initAuth = async () => {
+      if (isAuthenticated && !user) {
+        await getCurrentUser();
+      }
+      setIsInitializing(false);
+    };
+    initAuth();
+  }, [isAuthenticated, user, getCurrentUser]);
+
+  if (isInitializing) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
+        <div className="text-white text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
+          <p className="font-medium text-slate-200">Loading session...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <BrowserRouter>

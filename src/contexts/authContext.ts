@@ -19,6 +19,8 @@ interface AuthStore {
   logout: () => void;
   clearError: () => void;
   setError: (error: string) => void;
+  registrationEmail: string | null;
+  setRegistrationEmail: (email: string | null) => void;
 }
 
 export const useAuthStore = create<AuthStore>()(
@@ -28,6 +30,9 @@ export const useAuthStore = create<AuthStore>()(
       isLoading: false,
       error: null,
       isAuthenticated: authService.isAuthenticated(),
+      registrationEmail: null,
+
+      setRegistrationEmail: (email: string | null) => set({ registrationEmail: email }),
 
       login: async (email: string, password: string) => {
         set({ isLoading: true, error: null });
@@ -46,7 +51,7 @@ export const useAuthStore = create<AuthStore>()(
         set({ isLoading: true, error: null });
         try {
           await authService.register({ firstName, lastName, email, password, role });
-          set({ isLoading: false });
+          set({ isLoading: false, registrationEmail: email });
         } catch (error) {
           const errorMessage = error instanceof Error ? error.message : 'Registration failed';
           set({ error: errorMessage, isLoading: false });
@@ -59,7 +64,7 @@ export const useAuthStore = create<AuthStore>()(
         try {
           await authService.verifyOtp({ email, code });
           const user = await authService.getCurrentUser();
-          set({ user, isAuthenticated: true, isLoading: false });
+          set({ user, isAuthenticated: true, isLoading: false, registrationEmail: null });
         } catch (error) {
           const errorMessage = error instanceof Error ? error.message : 'OTP verification failed';
           set({ error: errorMessage, isLoading: false });
@@ -109,7 +114,11 @@ export const useAuthStore = create<AuthStore>()(
     }),
     {
       name: 'auth-store',
-      partialize: (state) => ({ user: state.user, isAuthenticated: state.isAuthenticated }),
+      partialize: (state) => ({ 
+        user: state.user, 
+        isAuthenticated: state.isAuthenticated,
+        registrationEmail: state.registrationEmail 
+      }),
     }
   )
 );

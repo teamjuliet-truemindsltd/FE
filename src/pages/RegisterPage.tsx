@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuthStore } from '../contexts/authContext';
 import { AlertCircle, UserPlus } from 'lucide-react';
+import { toast } from 'react-hot-toast';
 
 export const RegisterPage: React.FC = () => {
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ export const RegisterPage: React.FC = () => {
 
     try {
       await register(formData.firstName, formData.lastName, formData.email, formData.password, formData.role);
+      toast.success('Account created successfully! Please verify your email.');
       // Navigate to OTP verification page
       navigate('/auth/verify-otp', { state: { email: formData.email } });
     } catch (err) {

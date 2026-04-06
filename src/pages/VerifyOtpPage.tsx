@@ -6,8 +6,9 @@ import { AlertCircle, CheckCircle, Mail } from 'lucide-react';
 export const VerifyOtpPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { verifyOtp, resendOtp, isLoading, error, clearError } = useAuthStore();
-  const email = (location.state as { email?: string })?.email || '';
+  const { verifyOtp, resendOtp, isLoading, error, clearError, registrationEmail } = useAuthStore();
+  const searchParams = new URLSearchParams(location.search);
+  const email = (location.state as { email?: string })?.email || searchParams.get('email') || registrationEmail || '';
   const [otp, setOtp] = useState('');
   const [localError, setLocalError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
@@ -59,6 +60,26 @@ export const VerifyOtpPage: React.FC = () => {
       nextInput?.focus();
     }
   };
+
+  const handlePaste = (e: React.ClipboardEvent) => {
+    e.preventDefault();
+    const pastedData = e.clipboardData.getData('text').slice(0, 6);
+    if (!/^\d+$/.test(pastedData)) return;
+
+    setOtp(pastedData);
+    setLocalError(null);
+
+    // Focus reaching the last input or the next one
+    const nextIndex = Math.min(pastedData.length, 5);
+    const nextInput = document.getElementById(`otp-${nextIndex}`) as HTMLInputElement;
+    nextInput?.focus();
+  };
+
+  useEffect(() => {
+    // Auto-focus first input on mount
+    const firstInput = document.getElementById('otp-0') as HTMLInputElement;
+    firstInput?.focus();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -124,7 +145,7 @@ export const VerifyOtpPage: React.FC = () => {
           </div>
 
           {displayError && (
-            <div className="mb-6 flex items-gap-3 bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+            <div className="mb-6 flex items-center gap-3 bg-red-500/10 border border-red-500/30 rounded-lg p-4">
               <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
               <p className="text-red-500 text-sm">{displayError}</p>
             </div>
@@ -141,6 +162,7 @@ export const VerifyOtpPage: React.FC = () => {
                   maxLength={1}
                   value={otp[index] || ''}
                   onChange={(e) => handleOtpChange(e.target.value, index)}
+                  onPaste={handlePaste}
                   onKeyDown={(e) => {
                     if (e.key === 'Backspace') {
                       handleBackspace(index);

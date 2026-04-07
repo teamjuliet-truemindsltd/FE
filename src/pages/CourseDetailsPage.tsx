@@ -132,11 +132,19 @@ export const CourseDetailsPage: React.FC = () => {
   };
 
   const handleEnrollCourse = async () => {
+    if (!user) {
+      // Redirect guests to login
+      const currentPath = window.location.pathname;
+      window.location.href = `/login?redirect=${encodeURIComponent(currentPath)}`;
+      return;
+    }
     if (!course) return;
     try {
       setEnrolling(true);
       await enrollmentsService.enrollInCourse(course.id);
       setEnrolled(true);
+      // Refresh course data to get modules/lessons
+      fetchCourseDetails(course.id);
     } catch (err) {
       const errorMsg = err instanceof Error ? err.message : 'Failed to enroll';
       alert(errorMsg);
@@ -330,8 +338,22 @@ export const CourseDetailsPage: React.FC = () => {
                 </h2>
 
                 {modules.length === 0 ? (
-                  <div className="text-center py-10">
-                    <p className="text-slate-400">No modules have been added to this course yet.</p>
+                  <div className="text-center py-12 bg-slate-900/30 rounded-2xl border border-slate-700/50 border-dashed">
+                    <BookOpen className="w-12 h-12 text-slate-700 mx-auto mb-4" />
+                    <h3 className="text-white font-bold mb-2">Curriculum Locked</h3>
+                    <p className="text-slate-400 max-w-sm mx-auto mb-6">
+                      {enrolled 
+                        ? 'No modules have been added to this course yet.' 
+                        : 'Enroll in this course to gain full access to the curriculum, including all modules and lessons.'}
+                    </p>
+                    {!enrolled && (
+                      <button 
+                        onClick={handleEnrollCourse}
+                        className="px-6 py-2.5 bg-blue-500 hover:bg-blue-600 text-white rounded-xl font-bold text-sm transition shadow-lg shadow-blue-500/20"
+                      >
+                        Enroll Now
+                      </button>
+                    )}
                   </div>
                 ) : (
                   <div className="space-y-3">
@@ -401,8 +423,22 @@ export const CourseDetailsPage: React.FC = () => {
                 </h2>
 
                 {assignments.length === 0 ? (
-                  <div className="text-center py-10">
-                    <p className="text-slate-400">No assignments have been created for this course yet.</p>
+                  <div className="text-center py-12 bg-slate-900/30 rounded-2xl border border-slate-700/50 border-dashed">
+                    <FileText className="w-12 h-12 text-slate-700 mx-auto mb-4" />
+                    <h3 className="text-white font-bold mb-2">Assignments Locked</h3>
+                    <p className="text-slate-400 max-w-sm mx-auto mb-6">
+                      {enrolled 
+                        ? 'No assignments have been created for this course yet.' 
+                        : 'Enroll in this course to view and submit projects, assignments, and tasks.'}
+                    </p>
+                    {!enrolled && (
+                      <button 
+                        onClick={handleEnrollCourse}
+                        className="px-6 py-2.5 bg-blue-500 hover:bg-blue-600 text-white rounded-xl font-bold text-sm transition shadow-lg shadow-blue-500/20"
+                      >
+                        Enroll Now
+                      </button>
+                    )}
                   </div>
                 ) : (
                   <div className="space-y-4">
@@ -548,7 +584,20 @@ export const CourseDetailsPage: React.FC = () => {
                 ) : discussions.length === 0 ? (
                   <div className="text-center py-16 bg-slate-900/20 rounded-2xl border border-slate-800 border-dashed">
                     <MessageSquare className="w-12 h-12 text-slate-700 mx-auto mb-4" />
-                    <p className="text-slate-500">No discussions yet in this course. Be the first to start the conversation!</p>
+                    <h3 className="text-white font-bold mb-2">Discussions Restricted</h3>
+                    <p className="text-slate-500 max-w-sm mx-auto mb-6">
+                      {enrolled 
+                        ? 'No discussions yet in this course. Be the first to start the conversation!' 
+                        : 'Enroll in the course to participate in the community discussions and ask questions.'}
+                    </p>
+                    {!enrolled && (
+                      <button 
+                        onClick={handleEnrollCourse}
+                        className="px-6 py-2.5 bg-blue-500 hover:bg-blue-600 text-white rounded-xl font-bold text-sm transition shadow-lg shadow-blue-500/20"
+                      >
+                        Enroll Now
+                      </button>
+                    )}
                   </div>
                 ) : (
                   <div className="space-y-4">
@@ -613,10 +662,10 @@ export const CourseDetailsPage: React.FC = () => {
               <>
                 <button
                   onClick={handleEnrollCourse}
-                  disabled={enrolling || Number(course.instructorId) === Number(user?.id)}
+                  disabled={enrolling || (!!user && Number(course.instructorId) === Number(user.id))}
                   className="w-full py-4 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 disabled:from-slate-600 disabled:to-slate-600 text-white rounded-xl font-bold text-lg shadow-lg hover:shadow-cyan-500/20 transition-all disabled:cursor-not-allowed"
                 >
-                  {Number(course.instructorId) === Number(user?.id) ? 'Your Course' : (enrolling ? 'Enrolling...' : 'Enroll Now')}
+                  {!user ? 'Login to Enroll' : (Number(course.instructorId) === Number(user.id) ? 'Your Course' : (enrolling ? 'Enrolling...' : 'Enroll Now'))}
                 </button>
                 {Number(course.instructorId) === Number(user?.id) && (
                   <p className="text-center text-slate-500 text-xs mt-3">

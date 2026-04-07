@@ -19,16 +19,46 @@ const TRACKS = [
 ];
 
 const TRACK_COLORS: Record<string, { bg: string; text: string; border: string }> = {
-  'Frontend Development': { bg: 'bg-blue-500/20', text: 'text-blue-300', border: 'border-blue-500/40' },
-  'Backend Development': { bg: 'bg-green-500/20', text: 'text-green-300', border: 'border-green-500/40' },
-  'Mobile Development': { bg: 'bg-purple-500/20', text: 'text-purple-300', border: 'border-purple-500/40' },
-  'UI/UX Design': { bg: 'bg-pink-500/20', text: 'text-pink-300', border: 'border-pink-500/40' },
-  'DevOps & Cloud': { bg: 'bg-orange-500/20', text: 'text-orange-300', border: 'border-orange-500/40' },
-  'Data Science & AI': { bg: 'bg-cyan-500/20', text: 'text-cyan-300', border: 'border-cyan-500/40' },
-  'Cybersecurity': { bg: 'bg-red-500/20', text: 'text-red-300', border: 'border-red-500/40' },
-  'Product Management': { bg: 'bg-yellow-500/20', text: 'text-yellow-300', border: 'border-yellow-500/40' },
-  'QA & Testing': { bg: 'bg-teal-500/20', text: 'text-teal-300', border: 'border-teal-500/40' },
-  'Blockchain': { bg: 'bg-indigo-500/20', text: 'text-indigo-300', border: 'border-indigo-500/40' },
+  'Frontend Development': {
+    bg: 'bg-blue-500/20',
+    text: 'text-blue-300',
+    border: 'border-blue-500/40',
+  },
+  'Backend Development': {
+    bg: 'bg-green-500/20',
+    text: 'text-green-300',
+    border: 'border-green-500/40',
+  },
+  'UI/UX Design': {
+    bg: 'bg-pink-500/20',
+    text: 'text-pink-300',
+    border: 'border-pink-500/40',
+  },
+  'Product Management': {
+    bg: 'bg-yellow-500/20',
+    text: 'text-yellow-300',
+    border: 'border-yellow-500/40',
+  },
+  'Social Media Management': {
+    bg: 'bg-purple-500/20',
+    text: 'text-purple-300',
+    border: 'border-purple-500/40',
+  },
+  'Customer Representative': {
+    bg: 'bg-orange-500/20',
+    text: 'text-orange-300',
+    border: 'border-orange-500/40',
+  },
+  'Virtual Assistant': {
+    bg: 'bg-cyan-500/20',
+    text: 'text-cyan-300',
+    border: 'border-cyan-500/40',
+  },
+  'Graphic Design': {
+    bg: 'bg-red-500/20',
+    text: 'text-red-300',
+    border: 'border-red-500/40',
+  },
 };
 
 function getTrackStyle(track: string) {

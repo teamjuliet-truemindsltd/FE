@@ -34,7 +34,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
         <Sidebar collapsed={sidebarCollapsed} onToggle={() => setSidebarCollapsed(!sidebarCollapsed)} />
       </div>
 
-      <div className={`transition-all duration-300 md:${sidebarCollapsed ? 'ml-[68px]' : 'ml-[240px]'}`}>
+      <div className={`transition-all duration-300 ${sidebarCollapsed ? 'md:ml-[68px]' : 'md:ml-[240px]'}`}>
         {/* Top Bar */}
         <header className="sticky top-0 z-30 bg-slate-900/80 backdrop-blur-xl border-b border-slate-700/50">
           <div className="flex items-center justify-between px-4 sm:px-6 py-3">

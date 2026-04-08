@@ -58,27 +58,27 @@ export const Certificate: React.FC<CertificateProps> = ({
         </div>
 
         {/* Title */}
-        <h1 className="text-6xl font-black text-slate-900 mb-6 tracking-tight" style={{ fontFamily: 'Georgia, serif' }}>
-          CERTIFICATE OF COMPLETION
+        <h1 className="text-6xl font-black text-slate-900 mb-8 tracking-[0.1em] uppercase" style={{ fontFamily: 'Georgia, serif' }}>
+          Certificate of Completion
         </h1>
 
-        <p className="text-lg text-slate-500 mb-10 tracking-[0.2em] uppercase font-semibold">
-          This proudly certifies that
+        <p className="text-xl text-slate-500 mb-12 tracking-[0.3em] uppercase font-bold">
+          This is to certify that
         </p>
 
-        {/* Dynamic Name with custom styling */}
-        <div className="relative mb-10 inline-block w-full max-w-3xl">
-          <h2 className="text-6xl text-primary-teal drop-shadow-sm font-bold" style={{ fontFamily: '"Playfair Display", Georgia, serif', fontStyle: 'italic' }}>
+        {/* Dynamic Name - Major Legibility Boost */}
+        <div className="relative mb-14 inline-block w-full">
+          <h2 className="text-8xl text-slate-950 font-black tracking-tight drop-shadow-lg" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
             {studentName}
           </h2>
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-4 w-3/4 h-[2px] bg-gradient-to-r from-transparent via-slate-300 to-transparent" />
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-6 w-1/2 h-[4px] bg-primary-teal opacity-60" />
         </div>
 
-        <p className="text-lg text-slate-600 mb-8 max-w-2xl leading-relaxed font-medium">
-          Has steadfastly completed all coursework, assignments, and requirements to graduate from the comprehensive program:
+        <p className="text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed font-semibold">
+          has successfully fulfilled all requirements to graduate from 
         </p>
 
-        <h3 className="text-3xl font-bold text-slate-900 mb-auto px-12 py-4 bg-slate-50/80 rounded-2xl border border-slate-200/50 shadow-sm backdrop-blur-sm">
+        <h3 className="text-4xl font-extrabold text-primary-teal mb-auto px-12 py-5 bg-primary-teal/5 rounded-2xl border-2 border-primary-teal/20 shadow-sm italic">
           {courseName}
         </h3>
 

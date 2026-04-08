@@ -172,7 +172,11 @@ export const CourseDetailsPage: React.FC = () => {
       const element = document.getElementById('certificate-container');
       if (!element) return;
       
-      const canvas = await html2canvas(element, { scale: 2 });
+      const canvas = await html2canvas(element, { 
+        scale: 3,
+        useCORS: true,
+        logging: false
+      });
       const imgData = canvas.toDataURL('image/png');
       
       const pdf = new jsPDF({

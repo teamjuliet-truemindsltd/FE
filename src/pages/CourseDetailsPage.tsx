@@ -9,6 +9,9 @@ import { collaborationService, type Discussion } from '../services/collaboration
 import { useAuthStore } from '../contexts/authContext';
 import AppLayout from '../components/layout/AppLayout';
 import { apiClient } from '../lib/apiClient';
+import { Certificate } from '../components/ui/Certificate';
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 
 interface ModuleWithLessons extends CourseModule {
   lessons: Lesson[];
@@ -28,7 +31,9 @@ export const CourseDetailsPage: React.FC = () => {
   const [isDiscussionsLoading, setIsDiscussionsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [enrolling, setEnrolling] = useState(false);
+  const [enrollment, setEnrollment] = useState<any>(null); // Store active enrollment
   const [enrolled, setEnrolled] = useState(false);
+  const [downloadingCert, setDownloadingCert] = useState(false);
   const [expandedModules, setExpandedModules] = useState<Set<string>>(new Set());
   const [activeTab, setActiveTab] = useState<'curriculum' | 'assignments' | 'discussions'>('curriculum');
   const [isUploading, setIsUploading] = useState<string | null>(null);
@@ -79,10 +84,11 @@ export const CourseDetailsPage: React.FC = () => {
     }
     try {
       const enrollments = await enrollmentsService.getUserEnrollments();
-      const isEnrolled = enrollments.some(e => e.courseId === courseId);
-      setEnrolled(isEnrolled);
+      const currentEnrollment = enrollments.find((e: any) => e.courseId === courseId);
+      setEnrollment(currentEnrollment || null);
+      setEnrolled(!!currentEnrollment);
 
-      if (isEnrolled && assignments.length > 0) {
+      if (currentEnrollment && assignments.length > 0) {
         fetchUserSubmissions(assignments);
       }
     } catch {
@@ -156,6 +162,32 @@ export const CourseDetailsPage: React.FC = () => {
       alert(errorMsg);
     } finally {
       setEnrolling(false);
+    }
+  };
+
+  const downloadCertificate = async () => {
+    if (!enrollment || !course || !user) return;
+    setDownloadingCert(true);
+    try {
+      const element = document.getElementById('certificate-container');
+      if (!element) return;
+      
+      const canvas = await html2canvas(element, { scale: 2 });
+      const imgData = canvas.toDataURL('image/png');
+      
+      const pdf = new jsPDF({
+        orientation: 'landscape',
+        unit: 'px',
+        format: [1056, 816],
+      });
+      
+      pdf.addImage(imgData, 'PNG', 0, 0, 1056, 816);
+      pdf.save(`${course.title.replace(/\s+/g, '_')}_Certificate.pdf`);
+    } catch (error) {
+      console.error('Failed to generate certificate:', error);
+      alert('Could not generate certificate at this time.');
+    } finally {
+      setDownloadingCert(false);
     }
   };
 
@@ -657,8 +689,21 @@ export const CourseDetailsPage: React.FC = () => {
                     <CheckCircle className="w-8 h-8 text-emerald-500" />
                   </div>
                   <h3 className="text-foreground font-bold text-xl">Member Access</h3>
-                  <p className="text-foreground/40 text-sm mt-1">Review your progress or continue learning.</p>
+                  <p className="text-foreground/40 text-sm mt-1">
+                    {enrollment?.isCompleted ? 'You have graduated from this course!' : 'Review your progress or continue learning.'}
+                  </p>
                 </div>
+                
+                {enrollment?.isCompleted && (
+                  <button
+                    onClick={downloadCertificate}
+                    disabled={downloadingCert}
+                    className="block w-full py-4 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 rounded-2xl text-white font-bold text-center shadow-xl shadow-emerald-500/20 transition-all mb-4"
+                  >
+                    {downloadingCert ? 'Generating...' : 'Download Certificate 🏆'}
+                  </button>
+                )}
+
                 <Link
                   to="/my-courses"
                   className="block w-full py-4 btn-primary rounded-2xl text-white font-bold text-center shadow-xl shadow-primary-teal/20 transition-all"
@@ -722,6 +767,19 @@ export const CourseDetailsPage: React.FC = () => {
           )}
         </div>
       </div>
+
+      {/* Hidden Certificate for Rendering */}
+      {enrollment?.isCompleted && (
+        <div style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}>
+          <Certificate
+            studentName={`${user?.firstName} ${user?.lastName}`}
+            courseName={course.title}
+            dateCompleted={new Date(enrollment.completedAt).toLocaleDateString()}
+            certificateId={enrollment.certificateId}
+          />
+        </div>
+      )}
+
     </AppLayout>
   );
 };

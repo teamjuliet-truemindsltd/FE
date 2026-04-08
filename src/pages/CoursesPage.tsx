@@ -103,7 +103,7 @@ export const CoursesPage: React.FC = () => {
             placeholder="Search courses..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="block w-full pl-10 pr-4 py-2.5 bg-slate-800/60 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-sm transition"
+            className="block w-full pl-10 pr-4 py-2.5 bg-slate-800/60 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary-teal/50 focus:border-primary-teal/50 text-sm transition"
           />
         </div>
       </div>
@@ -118,14 +118,14 @@ export const CoursesPage: React.FC = () => {
       {/* Loading */}
       {isLoading ? (
         <div className="flex items-center justify-center py-20">
-          <Loader className="w-10 h-10 text-blue-500 animate-spin" />
+          <Loader className="w-10 h-10 text-primary-teal animate-spin" />
         </div>
       ) : courses.length === 0 ? (
         <div className="text-center py-20 bg-slate-800/30 rounded-2xl border border-slate-700/50 border-dashed">
           <BookOpen className="w-12 h-12 text-slate-600 mx-auto mb-4" />
           <p className="text-slate-400 text-lg">No courses found</p>
           {searchQuery && (
-            <button onClick={() => setSearchQuery('')} className="mt-4 text-blue-400 hover:text-blue-300 text-sm font-semibold">
+            <button onClick={() => setSearchQuery('')} className="mt-4 text-primary-teal hover:text-primary-teal/70 text-sm font-semibold">
               Clear search
             </button>
           )}
@@ -139,7 +139,7 @@ export const CoursesPage: React.FC = () => {
               return (
                 <div key={course.id} className="bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-slate-600 transition-all group flex flex-col">
                   {/* Course Header Gradient */}
-                  <div className="h-36 bg-gradient-to-br from-blue-600 to-cyan-600 relative overflow-hidden">
+                  <div className="h-36 bg-gradient-to-br from-primary-teal to-deep-teal relative overflow-hidden">
                     <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition" />
                     <div className="absolute inset-0 flex items-center justify-center">
                       <BookOpen className="w-12 h-12 text-white/30 group-hover:scale-110 transition-transform" />
@@ -153,7 +153,7 @@ export const CoursesPage: React.FC = () => {
 
                   {/* Course Content */}
                   <div className="p-5 flex-1 flex flex-col">
-                    <h3 className="text-lg font-bold text-white mb-2 line-clamp-2 group-hover:text-blue-400 transition-colors">
+                    <h3 className="text-lg font-bold text-white mb-2 line-clamp-2 group-hover:text-primary-teal transition-colors">
                       {course.title}
                     </h3>
                     <p className="text-slate-400 text-sm mb-4 line-clamp-2 flex-1">{course.description}</p>
@@ -182,7 +182,7 @@ export const CoursesPage: React.FC = () => {
                         <button
                           onClick={() => handleEnrollCourse(course.id)}
                           disabled={enrolling === course.id}
-                          className="flex-1 py-2.5 bg-blue-500 hover:bg-blue-600 disabled:bg-slate-600 text-white rounded-xl font-semibold transition disabled:cursor-not-allowed text-sm"
+                          className="flex-1 py-2.5 bg-primary-teal hover:bg-deep-teal disabled:bg-slate-600 text-white rounded-xl font-semibold transition disabled:cursor-not-allowed text-sm"
                         >
                           {enrolling === course.id ? 'Enrolling...' : 'Enroll'}
                         </button>
@@ -210,7 +210,7 @@ export const CoursesPage: React.FC = () => {
                   onClick={() => setCurrentPage(page)}
                   className={`w-10 h-10 rounded-lg text-sm font-bold transition ${
                     page === currentPage
-                      ? 'bg-blue-500 text-white'
+                      ? 'bg-primary-teal text-white'
                       : 'bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700'
                   }`}
                 >

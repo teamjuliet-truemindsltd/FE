@@ -484,7 +484,7 @@ const TeamsPage: React.FC = () => {
         <div className="max-w-7xl mx-auto">
           {isLoading ? (
             <div className="flex flex-col items-center justify-center py-24 gap-4">
-              <div className="w-12 h-12 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+              <div className="w-12 h-12 border-2 border-primary-teal border-t-transparent rounded-full animate-spin" />
               <p className="text-slate-400">Loading team members...</p>
             </div>
           ) : filtered.length === 0 ? (
@@ -498,7 +498,7 @@ const TeamsPage: React.FC = () => {
               {!search && selectedTrack === 'All' && (
                 <button
                   onClick={() => setShowModal(true)}
-                  className="text-blue-400 hover:text-blue-300 flex items-center gap-1 text-sm transition"
+                  className="text-primary-teal hover:text-primary-teal/70 flex items-center gap-1 text-sm transition"
                 >
                   Be the first to join <ChevronRight className="w-4 h-4" />
                 </button>

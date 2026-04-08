@@ -303,7 +303,7 @@ export const InstructorDashboardPage: React.FC = () => {
         </div>
         <button
           onClick={() => setShowCreateCourse(true)}
-          className="flex items-center gap-2 px-5 py-2.5 bg-blue-500 hover:bg-blue-600 text-white rounded-xl font-semibold transition text-sm shadow-lg shadow-blue-500/20"
+          className="flex items-center gap-2 px-5 py-2.5 bg-primary-teal hover:bg-deep-teal text-white rounded-xl font-semibold transition text-sm shadow-lg shadow-primary-teal/20"
         >
           <Plus className="w-4 h-4" />
           New Course
@@ -311,7 +311,7 @@ export const InstructorDashboardPage: React.FC = () => {
       </div>
 
       {showCreateCourse && (
-        <div className="bg-slate-800/60 rounded-2xl p-6 border border-blue-500/30 mb-8 blur-in">
+        <div className="bg-slate-800/60 rounded-2xl p-6 border border-primary-teal/30 mb-8 blur-in">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-white">Create New Course</h2>
             <button onClick={() => setShowCreateCourse(false)} className="text-slate-400 hover:text-white transition"><X className="w-5 h-5" /></button>
@@ -324,7 +324,7 @@ export const InstructorDashboardPage: React.FC = () => {
                 value={courseForm.title}
                 onChange={(e) => setCourseForm(prev => ({ ...prev, title: e.target.value }))}
                 placeholder="Course title"
-                className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500 text-sm outline-none"
+                className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-primary-teal text-sm outline-none"
               />
             </div>
             <div>
@@ -334,7 +334,7 @@ export const InstructorDashboardPage: React.FC = () => {
                 onChange={(e) => setCourseForm(prev => ({ ...prev, description: e.target.value }))}
                 placeholder="Course description"
                 rows={3}
-                className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500 text-sm outline-none resize-none"
+                className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-primary-teal text-sm outline-none resize-none"
               />
             </div>
             <label className="flex items-center gap-2 cursor-pointer">
@@ -342,13 +342,13 @@ export const InstructorDashboardPage: React.FC = () => {
                 type="checkbox"
                 checked={courseForm.isPublished}
                 onChange={(e) => setCourseForm(prev => ({ ...prev, isPublished: e.target.checked }))}
-                className="rounded border-slate-600 bg-slate-800 text-blue-500"
+                className="rounded border-slate-600 bg-slate-800 text-primary-teal"
               />
               <span className="text-sm text-slate-300">Publish immediately</span>
             </label>
             <div className="flex justify-end gap-3">
               <button type="button" onClick={() => setShowCreateCourse(false)} className="px-5 py-2.5 bg-slate-700 hover:bg-slate-600 text-white rounded-xl font-medium text-sm">Cancel</button>
-              <button type="submit" disabled={creatingCourse || !courseForm.title.trim()} className="px-5 py-2.5 bg-blue-500 hover:bg-blue-600 disabled:bg-slate-700 text-white rounded-xl font-semibold text-sm transition">
+              <button type="submit" disabled={creatingCourse || !courseForm.title.trim()} className="px-5 py-2.5 bg-primary-teal hover:bg-deep-teal disabled:bg-slate-700 text-white rounded-xl font-semibold text-sm transition">
                 {creatingCourse ? 'Creating...' : 'Create Course'}
               </button>
             </div>
@@ -357,10 +357,10 @@ export const InstructorDashboardPage: React.FC = () => {
       )}
 
       {editingCourse && (
-        <div className="bg-slate-800/80 backdrop-blur-md rounded-2xl p-6 border border-blue-500/30 mb-8 sticky top-24 z-20 shadow-2xl">
+        <div className="bg-slate-800/80 backdrop-blur-md rounded-2xl p-6 border border-primary-teal/30 mb-8 sticky top-24 z-20 shadow-2xl">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-white flex items-center gap-2">
-              <Pencil className="w-5 h-5 text-blue-400" />
+              <Pencil className="w-5 h-5 text-primary-teal" />
               Edit Course: {editingCourse.title}
             </h2>
             <button onClick={() => setEditingCourse(null)} className="text-slate-400 hover:text-white"><X className="w-5 h-5" /></button>
@@ -372,7 +372,7 @@ export const InstructorDashboardPage: React.FC = () => {
                 type="text"
                 value={editForm.title}
                 onChange={(e) => setEditForm(prev => ({ ...prev, title: e.target.value }))}
-                className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-blue-500 text-sm outline-none"
+                className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-primary-teal text-sm outline-none"
               />
             </div>
             <div>
@@ -381,7 +381,7 @@ export const InstructorDashboardPage: React.FC = () => {
                 value={editForm.description}
                 onChange={(e) => setEditForm(prev => ({ ...prev, description: e.target.value }))}
                 rows={3}
-                className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-blue-500 text-sm outline-none resize-none"
+                className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white focus:ring-2 focus:ring-primary-teal text-sm outline-none resize-none"
               />
             </div>
             <label className="flex items-center gap-2 cursor-pointer">
@@ -389,13 +389,13 @@ export const InstructorDashboardPage: React.FC = () => {
                 type="checkbox"
                 checked={editForm.isPublished}
                 onChange={(e) => setEditForm(prev => ({ ...prev, isPublished: e.target.checked }))}
-                className="rounded border-slate-600 bg-slate-800 text-blue-500"
+                className="rounded border-slate-600 bg-slate-800 text-primary-teal"
               />
               <span className="text-sm text-slate-300">Published</span>
             </label>
             <div className="flex justify-end gap-3">
               <button type="button" onClick={() => setEditingCourse(null)} className="px-5 py-2.5 bg-slate-700 hover:bg-slate-600 text-white rounded-xl font-medium text-sm transition">Cancel</button>
-              <button type="submit" disabled={updatingCourse || !editForm.title?.trim()} className="px-5 py-2.5 bg-blue-500 hover:bg-blue-600 disabled:bg-slate-700 text-white rounded-xl font-semibold text-sm transition">
+              <button type="submit" disabled={updatingCourse || !editForm.title?.trim()} className="px-5 py-2.5 bg-primary-teal hover:bg-deep-teal disabled:bg-slate-700 text-white rounded-xl font-semibold text-sm transition">
                 {updatingCourse ? 'Updating...' : 'Save Changes'}
               </button>
             </div>
@@ -410,7 +410,7 @@ export const InstructorDashboardPage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className={selectedCourse ? 'lg:col-span-1' : 'lg:col-span-3'}>
           {isLoading ? (
-            <div className="flex justify-center py-16"><Loader className="w-8 h-8 text-blue-500 animate-spin" /></div>
+            <div className="flex justify-center py-16"><Loader className="w-8 h-8 text-primary-teal animate-spin" /></div>
           ) : courses.length === 0 ? (
             <div className="text-center py-16 bg-slate-800/30 rounded-2xl border border-slate-700/50 border-dashed">
               <BookOpen className="w-12 h-12 text-slate-600 mx-auto mb-4" />
@@ -422,7 +422,7 @@ export const InstructorDashboardPage: React.FC = () => {
                 <div
                   key={course.id}
                   className={`bg-slate-800/60 rounded-xl p-4 border transition-all cursor-pointer ${
-                    selectedCourse?.id === course.id ? 'border-blue-500/50 ring-1 ring-blue-500/20' : 'border-slate-700/50 hover:border-slate-600'
+                    selectedCourse?.id === course.id ? 'border-primary-teal/50 ring-1 ring-primary-teal/20' : 'border-slate-700/50 hover:border-slate-600'
                   }`}
                   onClick={() => selectCourseForManagement(course)}
                 >
@@ -449,7 +449,7 @@ export const InstructorDashboardPage: React.FC = () => {
                         setEditingCourse(course);
                         setEditForm({ title: course.title, description: course.description, isPublished: course.isPublished });
                       }}
-                      className="flex items-center gap-1 px-3 py-1.5 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 rounded-lg text-xs transition"
+                      className="flex items-center gap-1 px-3 py-1.5 bg-primary-teal/10 hover:bg-primary-teal/20 text-primary-teal rounded-lg text-xs transition"
                     >
                       <Pencil className="w-3 h-3" />
                       Edit
@@ -484,12 +484,12 @@ export const InstructorDashboardPage: React.FC = () => {
                   value={moduleTitle}
                   onChange={(e) => setModuleTitle(e.target.value)}
                   placeholder="New module title..."
-                  className="flex-1 px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-blue-500 text-sm outline-none transition-all"
+                  className="flex-1 px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-primary-teal text-sm outline-none transition-all"
                 />
                 <button
                   onClick={handleAddModule}
                   disabled={addingModule || !moduleTitle.trim()}
-                  className="flex items-center gap-2 px-4 py-2.5 bg-blue-500 hover:bg-blue-600 disabled:bg-slate-700 text-white rounded-xl font-semibold text-sm transition"
+                  className="flex items-center gap-2 px-4 py-2.5 bg-primary-teal hover:bg-deep-teal disabled:bg-slate-700 text-white rounded-xl font-semibold text-sm transition"
                 >
                   <FolderPlus className="w-4 h-4" />
                   {addingModule ? 'Adding...' : 'Add Module'}
@@ -497,7 +497,7 @@ export const InstructorDashboardPage: React.FC = () => {
               </div>
 
               {loadingModules ? (
-                <div className="flex justify-center py-8"><Loader className="w-6 h-6 text-blue-500 animate-spin" /></div>
+                <div className="flex justify-center py-8"><Loader className="w-6 h-6 text-primary-teal animate-spin" /></div>
               ) : modules.length === 0 ? (
                 <p className="text-slate-500 text-center py-8 text-sm italic">No modules yet. Add one above!</p>
               ) : (
@@ -506,7 +506,7 @@ export const InstructorDashboardPage: React.FC = () => {
                     <div key={mod.id} className="border border-slate-700/50 rounded-xl p-4 bg-slate-900/20">
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-lg bg-blue-500/15 text-blue-400 flex items-center justify-center font-bold text-sm">
+                          <div className="w-8 h-8 rounded-lg bg-primary-teal/15 text-primary-teal flex items-center justify-center font-bold text-sm">
                             {idx + 1}
                           </div>
                           {editingModuleId === mod.id ? (
@@ -515,7 +515,7 @@ export const InstructorDashboardPage: React.FC = () => {
                                 type="text"
                                 value={editModuleTitle}
                                 onChange={(e) => setEditModuleTitle(e.target.value)}
-                                className="flex-1 px-3 py-1.5 bg-slate-900 border border-slate-700 rounded-lg text-white text-sm focus:ring-1 focus:ring-blue-500 outline-none"
+                                className="flex-1 px-3 py-1.5 bg-slate-900 border border-slate-700 rounded-lg text-white text-sm focus:ring-1 focus:ring-primary-teal outline-none"
                                 autoFocus
                               />
                               <button onClick={() => handleUpdateModule(mod.id)} className="p-1.5 bg-emerald-500/20 text-emerald-400 rounded-lg transition"><CheckCircle className="w-4 h-4" /></button>
@@ -625,7 +625,7 @@ export const InstructorDashboardPage: React.FC = () => {
                             </div>
                           </div>
                           <div className="flex items-center gap-2">
-                            <button onClick={() => viewSubmissions(as)} className="px-3 py-1.5 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 rounded-lg text-xs font-bold transition">Submissions</button>
+                            <button onClick={() => viewSubmissions(as)} className="px-3 py-1.5 bg-primary-teal/10 hover:bg-primary-teal/20 text-primary-teal rounded-lg text-xs font-bold transition">Submissions</button>
                             <button onClick={() => handleDeleteAssignment(as.id)} className="p-1.5 text-red-400/60 hover:text-red-400 transition"><Trash2 className="w-4 h-4" /></button>
                           </div>
                         </div>
@@ -635,7 +635,7 @@ export const InstructorDashboardPage: React.FC = () => {
                 )}
 
                 {selectedAssignment && (
-                  <div className="mt-8 bg-slate-900 p-6 rounded-2xl border border-blue-500/20 blur-in">
+                  <div className="mt-8 bg-slate-900 p-6 rounded-2xl border border-primary-teal/20 blur-in">
                     <div className="flex items-center justify-between mb-6">
                       <h3 className="text-lg font-bold text-white">Submissions: {selectedAssignment.title}</h3>
                       <button onClick={() => setSelectedAssignment(null)} className="text-slate-400 hover:text-white transition"><X className="w-5 h-5" /></button>
@@ -662,11 +662,11 @@ export const InstructorDashboardPage: React.FC = () => {
                               <tr key={sub.id} className="hover:bg-slate-800/30">
                                 <td className="px-4 py-4 text-white font-medium">{sub.user?.firstName} {sub.user?.lastName}</td>
                                 <td className="px-4 py-4 text-slate-400">{new Date(sub.createdAt).toLocaleDateString()}</td>
-                                <td className="px-4 py-4"><span className={`px-2 py-0.5 rounded-full ${sub.status === 'GRADED' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-blue-500/10 text-blue-400'}`}>{sub.status}</span></td>
+                                <td className="px-4 py-4"><span className={`px-2 py-0.5 rounded-full ${sub.status === 'GRADED' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-primary-teal/10 text-primary-teal'}`}>{sub.status}</span></td>
                                 <td className="px-4 py-4 text-white">{sub.grade ?? '-'} / {selectedAssignment.points}</td>
                                 <td className="px-4 py-4 text-right flex justify-end gap-2">
                                   <a href={sub.contentUrl} target="_blank" rel="noopener noreferrer" className="p-1.5 bg-slate-700 text-slate-300 rounded-lg hover:bg-slate-600 transition tracking-wide uppercase font-bold text-[10px]">View</a>
-                                  <button onClick={() => { setGradingSubmission(sub); setGradeForm({ grade: sub.grade || 0, feedback: sub.feedback || '' }); }} className="p-1.5 bg-blue-500/10 text-blue-400 rounded-lg transition"><Award className="w-4 h-4" /></button>
+                                  <button onClick={() => { setGradingSubmission(sub); setGradeForm({ grade: sub.grade || 0, feedback: sub.feedback || '' }); }} className="p-1.5 bg-primary-teal/10 text-primary-teal rounded-lg transition"><Award className="w-4 h-4" /></button>
                                 </td>
                               </tr>
                             ))}
@@ -684,21 +684,21 @@ export const InstructorDashboardPage: React.FC = () => {
 
       {gradingSubmission && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-300">
-          <div className="w-full max-w-md bg-slate-800 rounded-2xl border border-blue-500/30 p-6 shadow-2xl scale-in-center">
+          <div className="w-full max-w-md bg-slate-800 rounded-2xl border border-primary-teal/30 p-6 shadow-2xl scale-in-center">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold text-white flex items-center gap-2"><Award className="w-6 h-6 text-blue-400" /> Grade Submission</h2>
+              <h2 className="text-xl font-bold text-white flex items-center gap-2"><Award className="w-6 h-6 text-primary-teal" /> Grade Submission</h2>
               <button onClick={() => setGradingSubmission(null)} className="text-slate-400 hover:text-white transition"><X className="w-6 h-6" /></button>
             </div>
             <div className="mb-6 p-4 bg-slate-900 rounded-xl border border-slate-700">
                 <div className="text-[10px] text-slate-500 uppercase font-bold tracking-widest">Student</div>
                 <div className="text-white font-bold">{gradingSubmission.user?.firstName} {gradingSubmission.user?.lastName}</div>
                 <div className="mt-3 text-[10px] text-slate-500 uppercase font-bold tracking-widest">Assignment</div>
-                <div className="text-blue-400 font-semibold">{selectedAssignment?.title}</div>
+                <div className="text-primary-teal font-semibold">{selectedAssignment?.title}</div>
             </div>
             <form onSubmit={handleGradeSubmission} className="space-y-4">
               <div>
                 <label className="block text-sm font-bold text-slate-300 mb-1">Grade (Max {selectedAssignment?.points})</label>
-                <input type="number" max={selectedAssignment?.points} value={gradeForm.grade} onChange={(e) => setGradeForm(prev => ({ ...prev, grade: Number(e.target.value) }))} className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl text-white font-bold text-lg focus:ring-1 focus:ring-blue-500 outline-none transition-all" />
+                <input type="number" max={selectedAssignment?.points} value={gradeForm.grade} onChange={(e) => setGradeForm(prev => ({ ...prev, grade: Number(e.target.value) }))} className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-xl text-white font-bold text-lg focus:ring-1 focus:ring-primary-teal outline-none transition-all" />
               </div>
               <div>
                 <label className="block text-sm font-bold text-slate-300 mb-1">Feedback</label>
@@ -706,7 +706,7 @@ export const InstructorDashboardPage: React.FC = () => {
               </div>
               <div className="flex gap-3 pt-2">
                 <button type="button" onClick={() => setGradingSubmission(null)} className="flex-1 py-3 bg-slate-700 text-white rounded-xl font-bold transition">Cancel</button>
-                <button type="submit" disabled={isGrading} className="flex-1 py-3 bg-blue-500 hover:bg-blue-600 disabled:bg-slate-700 text-white rounded-xl font-bold transition flex justify-center items-center gap-2">
+                <button type="submit" disabled={isGrading} className="flex-1 py-3 bg-primary-teal hover:bg-deep-teal disabled:bg-slate-700 text-white rounded-xl font-bold transition flex justify-center items-center gap-2">
                   {isGrading ? <Loader className="w-4 h-4 animate-spin"/> : <Check className="w-4 h-4" />} Save Grade
                 </button>
               </div>
@@ -719,3 +719,4 @@ export const InstructorDashboardPage: React.FC = () => {
 };
 
 export default InstructorDashboardPage;
+

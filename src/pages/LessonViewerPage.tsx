@@ -131,7 +131,7 @@ export const LessonViewerPage: React.FC = () => {
 
   const getContentIcon = () => {
     switch (lesson?.contentType) {
-      case ContentType.VIDEO: return <Video className="w-5 h-5 text-blue-400" />;
+      case ContentType.VIDEO: return <Video className="w-5 h-5 text-primary-teal" />;
       case ContentType.DOCUMENT: return <FileText className="w-5 h-5 text-emerald-400" />;
       case ContentType.TEXT: return <Type className="w-5 h-5 text-purple-400" />;
       default: return <FileText className="w-5 h-5 text-slate-400" />;
@@ -142,7 +142,7 @@ export const LessonViewerPage: React.FC = () => {
     return (
       <AppLayout>
         <div className="flex items-center justify-center py-20">
-          <Loader className="w-10 h-10 text-blue-500 animate-spin" />
+          <Loader className="w-10 h-10 text-primary-teal animate-spin" />
         </div>
       </AppLayout>
     );
@@ -154,7 +154,7 @@ export const LessonViewerPage: React.FC = () => {
         <div className="max-w-2xl mx-auto p-6 bg-red-500/10 border border-red-500/30 rounded-2xl text-red-400">
           <h2 className="text-xl font-bold mb-2">Error</h2>
           <p>{error || 'Lesson not found'}</p>
-          <button onClick={() => navigate(-1)} className="text-blue-400 hover:text-blue-300 mt-4 inline-block text-sm font-semibold">
+          <button onClick={() => navigate(-1)} className="text-primary-teal hover:text-primary-teal/70 mt-4 inline-block text-sm font-semibold">
             ← Go Back
           </button>
         </div>

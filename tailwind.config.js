@@ -4,21 +4,24 @@ export default {
     "./index.html",
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
         primary: {
-          50: "#f9f5ff",
-          100: "#f3ebff",
-          200: "#e9d5ff",
-          300: "#d8b4fe",
-          400: "#c084fc",
-          500: "#a855f7",
-          600: "#9333ea",
-          700: "#7e22ce",
-          800: "#6b21a8",
-          900: "#581c87",
+          DEFAULT: "var(--primary-teal)",
+          teal: "var(--primary-teal)",
+          deep: "var(--deep-teal)",
         },
+        accent: {
+          mint: "var(--mint-green)",
+          muted: "var(--muted-teal)",
+          light: "var(--light-green)",
+          mid: "var(--mid-green)",
+        },
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        surface: "var(--surface)",
         dark: {
           50: "#f9fafb",
           100: "#f3f4f6",
@@ -60,9 +63,9 @@ export default {
         display: ["Outfit", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        "glow-sm": "0 0 20px rgba(168, 85, 247, 0.3)",
-        "glow-md": "0 0 40px rgba(168, 85, 247, 0.4)",
-        "glow-lg": "0 0 60px rgba(168, 85, 247, 0.5)",
+        "glow-sm": "0 0 20px rgba(15, 143, 122, 0.3)",
+        "glow-md": "0 0 40px rgba(15, 143, 122, 0.4)",
+        "glow-lg": "0 0 60px rgba(15, 143, 122, 0.5)",
       },
     },
   },

@@ -42,18 +42,18 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
 
   return (
     <aside
-      className={`h-full bg-slate-900 border-r border-slate-700/50 z-40 transition-all duration-300 flex flex-col ${
+      className={`h-full bg-surface border-r border-border z-40 transition-all duration-300 flex flex-col ${
         collapsed ? 'w-[68px]' : 'w-[240px]'
       }`}
     >
       {/* Logo */}
-      <div className="h-16 flex items-center px-4 border-b border-slate-700/50 flex-shrink-0">
+      <div className="h-16 flex items-center px-4 border-b border-border flex-shrink-0">
         <Link to={user ? "/dashboard" : "/"} className="flex items-center gap-3 min-w-0">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0">
+          <div className="w-8 h-8 rounded-lg bg-primary-teal flex items-center justify-center flex-shrink-0">
             <BookOpen className="w-4 h-4 text-white" />
           </div>
           {!collapsed && (
-            <span className="text-lg font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent whitespace-nowrap">
+            <span className="text-lg font-bold text-primary-teal whitespace-nowrap">
               TalentFlow
             </span>
           )}
@@ -72,16 +72,16 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
               title={collapsed ? item.label : undefined}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all group ${
                 active
-                  ? 'bg-blue-500/15 text-blue-400'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                  ? 'bg-primary-teal/10 text-primary-teal'
+                  : 'text-foreground/60 hover:text-foreground hover:bg-foreground/5'
               }`}
             >
-              <Icon className={`w-5 h-5 flex-shrink-0 ${active ? 'text-blue-400' : 'text-slate-500 group-hover:text-slate-300'}`} />
+              <Icon className={`w-5 h-5 flex-shrink-0 ${active ? 'text-primary-teal' : 'text-foreground/40 group-hover:text-foreground/70'}`} />
               {!collapsed && (
                 <span className="text-sm font-medium whitespace-nowrap">{item.label}</span>
               )}
               {active && !collapsed && (
-                <div className="ml-auto w-1.5 h-1.5 rounded-full bg-blue-400" />
+                <div className="ml-auto w-1.5 h-1.5 rounded-full bg-primary-teal" />
               )}
             </Link>
           );
@@ -89,10 +89,10 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
       </nav>
 
       {/* Collapse Toggle */}
-      <div className="p-2 pb-6 border-t border-slate-700/50 flex-shrink-0">
+      <div className="p-2 pb-6 border-t border-border flex-shrink-0">
         <button
           onClick={onToggle}
-          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
+          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-foreground/40 hover:text-foreground hover:bg-foreground/5 transition"
         >
           {collapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
           {!collapsed && <span className="text-xs">Collapse</span>}

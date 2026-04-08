@@ -25,109 +25,122 @@ export const Certificate: React.FC<CertificateProps> = ({
         boxSizing: 'border-box',
       }}
     >
-      {/* Outer Border */}
-      <div className="absolute inset-0 border-[20px] border-slate-900 z-10 pointer-events-none" />
-      
-      {/* Inner Elegant Border */}
-      <div className="absolute inset-8 border-[2px] border-primary-teal/40 z-10 pointer-events-none p-1">
-        <div className="w-full h-full border-[1px] border-primary-teal/20" />
+      {/* 1. LAYERED BORDERS (Official Look) */}
+      <div className="absolute inset-0 border-[24px] border-slate-900 z-10 pointer-events-none" />
+      <div className="absolute inset-[30px] border-[2px] border-primary-teal/30 z-10 pointer-events-none" />
+      <div className="absolute inset-[40px] border-[1px] border-slate-200 z-10 pointer-events-none" />
+
+      {/* 2. PREMIUM BACKGROUND ACCENTS */}
+      {/* Subtle geometric grid or pattern overlay could go here, but keeping it clean with gradients */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-primary-teal/10 via-deep-teal/5 to-transparent rounded-full -translate-y-1/2 translate-x-1/3 blur-3xl opacity-60" />
+      <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-gradient-to-tr from-primary-teal/10 via-emerald-500/5 to-transparent rounded-full translate-y-1/3 -translate-x-1/4 blur-3xl opacity-60" />
+
+      {/* Corporate Corner Accents */}
+      <div className="absolute top-0 left-0 w-80 h-80 bg-slate-900 z-20 shadow-2xl" style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }}>
+         <div className="absolute top-10 left-10 text-white font-black text-3xl opacity-20 rotate-[-45deg]">TALENTFLOW</div>
+      </div>
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-primary-teal z-20 shadow-2xl" style={{ clipPath: 'polygon(100% 100%, 0 100%, 100% 0)' }}>
+         <div className="absolute bottom-10 right-10 text-white font-black text-3xl opacity-20 rotate-[-45deg]">ACADEMY</div>
       </div>
 
-      {/* Modern Gradient Backgrounds */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-primary-teal/10 via-deep-teal/5 to-transparent rounded-full -translate-y-1/2 translate-x-1/3 blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-gradient-to-tr from-primary-teal/10 via-emerald-500/5 to-transparent rounded-full translate-y-1/3 -translate-x-1/4 blur-3xl" />
-
-      {/* Geometric Accents */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-slate-900" style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }} />
-      <div className="absolute bottom-0 right-0 w-64 h-64 bg-primary-teal" style={{ clipPath: 'polygon(100% 100%, 0 100%, 100% 0)' }} />
-
-      {/* Main Content Container */}
-      <div className="relative z-20 h-full flex flex-col items-center justify-center pt-24 pb-20 px-24 text-center">
+      {/* 3. MAIN CONTENT */}
+      <div className="relative z-30 h-full flex flex-col items-center justify-center pt-20 pb-16 px-32 text-center text-slate-900">
         
-        {/* Header Ribbon / Logo Area */}
-        <div className="mb-12 flex flex-col items-center">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 bg-slate-900 text-white flex items-center justify-center font-black text-2xl shadow-lg border-2 border-primary-teal/30">
-              TF
-            </div>
-            <span className="text-xl font-bold tracking-[0.25em] text-slate-900 uppercase">
-              TalentFlow Academy
-            </span>
+        {/* Upper Branding */}
+        <div className="mb-14 flex flex-col items-center animate-in fade-in zoom-in duration-700">
+          <div className="flex items-center gap-4 mb-3">
+             <div className="w-14 h-14 bg-slate-900 border-2 border-primary-teal flex items-center justify-center text-white font-black text-3xl shadow-xl">
+               TF
+             </div>
+             <div className="text-left">
+               <div className="text-2xl font-black tracking-[0.3em] uppercase leading-none">TalentFlow</div>
+               <div className="text-xs font-bold text-primary-teal tracking-[0.6em] uppercase mt-1">Academy of Excellence</div>
+             </div>
           </div>
-          <div className="h-px w-32 bg-gradient-to-r from-transparent via-primary-teal to-transparent" />
+          <div className="w-48 h-1 bg-gradient-to-r from-transparent via-primary-teal to-transparent rounded-full" />
         </div>
 
-        {/* Title */}
-        <h1 className="text-6xl font-black text-slate-900 mb-8 tracking-[0.1em] uppercase" style={{ fontFamily: 'Georgia, serif' }}>
-          Certificate of Completion
-        </h1>
+        {/* The Title Section */}
+        <div className="mb-8">
+          <h1 className="text-5xl font-black tracking-[0.15em] mb-4" style={{ fontFamily: 'Georgia, serif' }}>
+            CERTIFICATE OF COMPLETION
+          </h1>
+          <div className="flex items-center justify-center gap-4">
+             <div className="h-px w-20 bg-slate-300" />
+             <p className="text-lg text-slate-500 tracking-[0.25em] font-bold uppercase">This is to officially certify that</p>
+             <div className="h-px w-20 bg-slate-300" />
+          </div>
+        </div>
 
-        <p className="text-xl text-slate-500 mb-12 tracking-[0.3em] uppercase font-bold">
-          This is to certify that
+        {/* THE STUDENT NAME (The Hero Piece) */}
+        <div className="relative mb-14 w-full">
+           <h2 className="text-8xl font-black tracking-tight text-slate-900 drop-shadow-xl py-6" style={{ fontFamily: 'Georgia, serif' }}>
+              {studentName}
+           </h2>
+           {/* Subtle underline garnish */}
+           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 flex items-center gap-2">
+              <div className="h-[2px] flex-1 bg-gradient-to-r from-transparent to-primary-teal" />
+              <div className="w-3 h-3 bg-primary-teal rotate-45" />
+              <div className="h-[2px] flex-1 bg-gradient-to-l from-transparent to-primary-teal" />
+           </div>
+        </div>
+
+        {/* Narrative */}
+        <p className="text-xl text-slate-600 mb-10 max-w-3xl leading-relaxed font-medium">
+          has successfully demonstrated exceptional competence and fulfilled all curriculum requirements for the mastery program in:
         </p>
 
-        {/* Dynamic Name - Major Legibility Boost */}
-        <div className="relative mb-14 inline-block w-full">
-          <h2 className="text-8xl text-slate-950 font-black tracking-tight drop-shadow-lg" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
-            {studentName}
-          </h2>
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-6 w-1/2 h-[4px] bg-primary-teal opacity-60" />
+        {/* COURSE NAME BOX */}
+        <div className="mb-auto">
+          <h3 className="text-4xl font-black text-primary-teal bg-primary-teal/5 border-2 border-primary-teal/20 px-20 py-6 rounded-[2rem] shadow-sm italic ring-8 ring-transparent hover:ring-primary-teal/5 transition-all duration-500">
+            {courseName}
+          </h3>
         </div>
 
-        <p className="text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed font-semibold">
-          has successfully fulfilled all requirements to graduate from 
-        </p>
-
-        <h3 className="text-4xl font-extrabold text-primary-teal mb-auto px-12 py-5 bg-primary-teal/5 rounded-2xl border-2 border-primary-teal/20 shadow-sm italic">
-          {courseName}
-        </h3>
-
-        {/* Footer info (Date, Seal, Signature) */}
-        <div className="w-full flex justify-between items-end mt-16 px-12">
+        {/* 4. FOOTER (Status & Verification) */}
+        <div className="w-full flex justify-between items-end mt-16 px-10">
           
-          {/* Date Section */}
-          <div className="text-center w-64">
-            <p className="text-xl font-bold text-slate-800 border-b-2 border-slate-900 pb-2 mb-3">
-              {dateCompleted}
-            </p>
-            <p className="text-xs text-slate-500 uppercase tracking-widest font-bold">Date Awarded</p>
-          </div>
-          
-          {/* Official Seal */}
-          <div className="text-center relative -mt-12 flex flex-col items-center">
-            {/* Seal Graphic */}
-            <div className="relative flex items-center justify-center w-36 h-36 mb-4">
-              {/* Outer jagged edge (simulated with rotated squares) */}
-              <div className="absolute inset-0 bg-primary-teal rotate-12 rounded-lg" />
-              <div className="absolute inset-0 bg-primary-teal rotate-45 rounded-lg" />
-              <div className="absolute inset-0 bg-primary-teal rotate-75 rounded-lg" />
-              <div className="absolute inset-0 bg-primary-teal hover:rotate-90 transition-transform duration-1000 rounded-lg" />
-              
-              {/* Inner Circle */}
-              <div className="absolute inset-1.5 bg-slate-900 rounded-full flex flex-col items-center justify-center border-2 border-primary-teal/50 shadow-inner">
-                <span className="text-primary-teal font-black text-2xl tracking-tighter">TF</span>
-                <span className="text-white text-[8px] font-bold tracking-widest uppercase mt-1">Official</span>
-                <span className="text-white text-[8px] font-bold tracking-widest uppercase">Verified</span>
-              </div>
+          {/* Award Date */}
+          <div className="w-64 text-center">
+            <div className="border-b-2 border-slate-900 pb-2 mb-2 font-black text-xl text-slate-800">
+               {dateCompleted}
             </div>
-            
-            <span className="bg-slate-100 px-3 py-1 rounded-full border border-slate-200 text-[10px] text-slate-500 font-mono tracking-widest shadow-sm">
-              ID: {certificateId.split('-')[0].toUpperCase()}
-            </span>
+            <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.3em]">Date of Graduation</p>
           </div>
 
-          {/* Signature Section */}
-          <div className="text-center w-64">
-            <div className="border-b-2 border-slate-900 pb-2 mb-3 h-10 flex items-end justify-center">
-              {/* Simulated Signature Font */}
-              <span className="text-3xl text-slate-800 -rotate-3 translate-y-2 opacity-80" style={{ fontFamily: 'Brush Script MT, cursive' }}>
-                {instructorName}
-              </span>
-            </div>
-            <p className="text-xs text-slate-500 uppercase tracking-widest font-bold">Instructor Signature</p>
+          {/* Verification / Seal */}
+          <div className="relative -mb-4 flex flex-col items-center">
+             <div className="relative w-40 h-40 flex items-center justify-center">
+                {/* Complex Star Seal */}
+                <div className="absolute inset-0 bg-primary-teal/10 rounded-full animate-pulse" />
+                <div className="absolute inset-2 bg-primary-teal shadow-2xl rotate-[22deg] rounded-lg opacity-90" />
+                <div className="absolute inset-2 bg-primary-teal rotate-[67deg] rounded-lg opacity-90" />
+                <div className="absolute inset-3 bg-slate-900 rounded-full flex items-center justify-center border-2 border-primary-teal/50">
+                    <div className="flex flex-col items-center">
+                       <span className="text-primary-teal text-3xl font-black tracking-tighter">TF</span>
+                       <div className="h-[1px] w-8 bg-primary-teal/30 my-1" />
+                       <span className="text-white text-[8px] font-black tracking-widest uppercase">VERIFIED</span>
+                    </div>
+                </div>
+             </div>
+             <div className="mt-4 px-4 py-1.5 bg-slate-50 border border-slate-200 rounded-full flex items-center gap-2">
+                <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+                <span className="text-[9px] font-mono text-slate-500 tracking-widest uppercase">ID: {certificateId.split('-')[0]}...</span>
+             </div>
           </div>
-          
+
+          {/* Authority Signature */}
+          <div className="w-64 text-center">
+            <div className="border-b-2 border-slate-900 pb-2 mb-2 h-12 flex items-end justify-center">
+               <span className="text-4xl text-slate-800 opacity-90 -rotate-2 select-none" style={{ fontFamily: 'Brush Script MT, cursive' }}>
+                  {instructorName}
+               </span>
+            </div>
+            <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.3em]">Authorized Signature</p>
+          </div>
+
         </div>
+
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { BookOpen, Users, Zap, Menu, X, Sun, Moon } from 'lucide-react';
+// import { motion } from 'framer-motion';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import Hero from '../components/Hero';
 import { Logo } from '../components/ui/Logo';

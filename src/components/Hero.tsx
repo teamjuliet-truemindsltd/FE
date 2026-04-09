@@ -32,7 +32,7 @@ export default function Hero() {
               <span className="text-primary-teal">Matters</span> to You
             </h1>
             <p className="text-xl text-foreground/60 leading-relaxed max-w-lg">
-              A minimalist, authentic platform built for growth. Connect with experts and master the skills that shape your future.
+              A  platform built for growth. Connect with experts and master the skills that shape your future.
             </p>
           </div>
 
@@ -72,21 +72,21 @@ export default function Hero() {
           className="relative lg:block"
         >
           <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-8 border-surface transition-transform hover:scale-[1.01] duration-700">
-            <img 
-              src={HeroImage} 
-              alt="People collaborating naturally" 
+            <img
+              src={HeroImage}
+              alt="People collaborating naturally"
               className="w-full h-auto object-cover"
             />
             {/* Soft overlay gradient */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
           </div>
-          
+
           {/* Subtle Accent decoration */}
           <div className="absolute -top-6 -right-6 w-32 h-32 bg-primary-teal/10 rounded-full blur-2xl z-0"></div>
           <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-light-green/10 rounded-full blur-3xl z-0"></div>
-          
+
           {/* Floating 'Trust' badge */}
-          <motion.div 
+          <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}

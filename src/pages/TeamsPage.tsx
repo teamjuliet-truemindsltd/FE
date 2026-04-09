@@ -369,10 +369,10 @@ const TeamsPage: React.FC = () => {
                 {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </button>
             </div>
-            
+
             <div className="flex items-center gap-2 md:hidden">
               <button onClick={toggleTheme} className="p-2 text-foreground/60">
-                {theme === 'dark' ? <Sun size={20}/> : <Moon size={20}/>}
+                {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
               </button>
               <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2 text-foreground">
                 {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -416,7 +416,7 @@ const TeamsPage: React.FC = () => {
               Our Amazing Team
             </h1>
             <p className="text-foreground/50 text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
-              TalentFlow is shaped by a community of passionate mentors and learners. Together, we build the future of education.
+              TalentFlow is shaped by a community of passionate interns at Trueminds Ltd. Together, we build the future of learning.
             </p>
 
             {/* Stats */}
@@ -434,7 +434,7 @@ const TeamsPage: React.FC = () => {
               ))}
             </div>
 
-            {/* Add Member Button */}
+            {/* Add Member Button 
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -444,6 +444,7 @@ const TeamsPage: React.FC = () => {
               <Plus className="w-5 h-5" />
               Add Your Profile
             </motion.button>
+            */}
           </motion.div>
         </div>
       </section>

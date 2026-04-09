@@ -114,10 +114,10 @@ export const useAuthStore = create<AuthStore>()(
     }),
     {
       name: 'auth-store',
-      partialize: (state) => ({ 
-        user: state.user, 
+      partialize: (state) => ({
+        user: state.user,
         isAuthenticated: state.isAuthenticated,
-        registrationEmail: state.registrationEmail 
+        registrationEmail: state.registrationEmail
       }),
     }
   )

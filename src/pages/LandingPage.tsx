@@ -42,10 +42,10 @@ export const LandingPage: React.FC = () => {
                 {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </button>
             </div>
-            
+
             <div className="flex items-center gap-2 md:hidden">
               <button onClick={toggleTheme} className="p-2 text-foreground/60">
-                {theme === 'dark' ? <Sun size={20}/> : <Moon size={20}/>}
+                {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
               </button>
               <button onClick={() => setIsOpen(!isOpen)} className="p-2 text-foreground">
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -143,7 +143,7 @@ export const LandingPage: React.FC = () => {
                 Join a global community of 12,000+ students and start learning what matters today.
               </p>
             </div>
-            
+
             <div className="relative z-10 flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/auth/register"
@@ -175,7 +175,7 @@ export const LandingPage: React.FC = () => {
             <a href="#" className="hover:text-primary-teal transition-colors">LinkedIn</a>
             <a href="#" className="hover:text-primary-teal transition-colors">Privacy</a>
           </div>
-          <p>&copy; {new Date().getFullYear()} TalentFlow. Pure & Simple Learning.</p>
+          <p>&copy; {new Date().getFullYear()} TalentFlow.</p>
         </div>
       </footer>
     </div>

@@ -71,7 +71,7 @@ export const LandingPage: React.FC = () => {
       {/* Hero Section */}
       <Hero />
 
-      {/* Features Section - Simple & Grounded */}
+      {/* Features Section - Simple & Grounded 
       <section id="features" className="section-py px-6 lg:px-8 bg-surface/20">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -127,8 +127,8 @@ export const LandingPage: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* CTA Section - Minimalist & Confident */}
+*/}
+      {/* CTA Section - Minimalist & Confident 
       <section className="section-py px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <motion.div
@@ -158,8 +158,8 @@ export const LandingPage: React.FC = () => {
                 Sign In
               </Link>
             </div>
-
-            {/* Subtle background decoration */}
+*/}
+      {/* Subtle background decoration 
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2"></div>
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/5 blur-3xl rounded-full -translate-x-1/2 translate-y-1/2"></div>
           </motion.div>

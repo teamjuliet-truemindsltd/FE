@@ -1,73 +1,113 @@
-# React + TypeScript + Vite
+# 🎓 TrueMinds TalentFlow LMS - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the frontend of the **TrueMinds TalentFlow LMS**, a state-of-the-art educational platform designed for a seamless learning and teaching experience. Built with **React**, **TypeScript**, and **Vite**, this application features a premium, responsive UI with a focus on accessibility and performance.
 
-Currently, two official plugins are available:
-....
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+### 🌐 Live Preview
+The frontend is currently deployed and accessible at:
+👉 **[https://talents-flow-lms.vercel.app/](https://talents-flow-lms.vercel.app/)**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🌟 Core Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Premium UI/UX Design**
+  - **Glassmorphism Aesthetic**: Modern, translucent UI elements with subtle blurs and gradients.
+  - **Dynamic Animations**: Smooth transitions and micro-interactions powered by **Framer Motion**.
+  - **Responsive Layout**: Optimized for desktop, tablet, and mobile devices.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Seamless Authentication**
+  - **Multi-Role Support**: Tailored experiences for Students and Instructors.
+  - **Secure Onboarding**: Registration flow with integrated **Email OTP Verification**.
+  - **Protected Routes**: Secure navigation ensuring only authorized users access sensitive dashboards.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Immersive Learning Experience**
+  - **Custom Video Player**: A specialized lesson viewer for high-quality educational streaming.
+  - **Course Discovery**: intuitive search and filtering to find the perfect course.
+  - **Progress Visuals**: Real-time progress bars and "Lesson Completed" indicators.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **Advanced Dashboards**
+  - **Instructor Command Center**: Tools for course creation, module management, and assignment grading.
+  - **Student Workspace**: A centralized hub for enrolled courses, upcoming tasks, and personal progress.
+
+- **Collaboration & Community**
+  - **In-Course Discussions**: Discussion boards for students to ask questions and instructors to provide answers.
+  - **Contributor Showcase**: A dedicated "Teams" page highlighting the architects of the platform.
+
+---
+
+## 🛠 Tech Stack
+
+| Category | Technology |
+| :--- | :--- |
+| **Framework** | [React 18+](https://reactjs.org/) |
+| **Build Tool**| [Vite](https://vitejs.dev/) |
+| **Language** | [TypeScript](https://www.typescriptlang.org/) |
+| **Styling**   | [Tailwind CSS](https://tailwindcss.com/) |
+| **Animations**| [Framer Motion](https://www.framer.com/motion/) |
+| **Icons**     | [Lucide React](https://lucide.dev/) |
+| **State**     | React Context API (Auth & Logic) |
+| **API Client**| Axios |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Node.js**: v18 or higher (v22 recommended)
+- **Package Manager**: npm
+
+### Step 1: Environment Setup
+
+Create a `.env.local` file in the root directory and configure the backend URL:
+
+```env
+VITE_API_URL=http://localhost:3000/api/v1
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Step 2: Installation & Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+# Install dependencies
+npm install
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Start development server
+npm run dev
 ```
+
+---
+
+## 📂 Project Structure
+
+```text
+src/
+├── components/         # Reusable UI components (Hero, Layout, Nav)
+│   ├── ui/             # Core UI atoms (Buttons, Inputs, Cards)
+│   └── layout/         # Shared layouts (Dashboard, Landing)
+├── contexts/           # Global state (AuthContext)
+├── services/           # API communication layer (Auth, Courses, Lessons)
+├── pages/              # Main application views
+│   ├── LandingPage     # Hero, Features, Testimonials
+│   ├── DashboardPage   # Role-based workspace
+│   ├── CourseDetails   # Course overview and enrollment
+│   ├── LessonViewer    # Video player and content
+│   └── Discussions     # Collaborative boards
+├── lib/                # Utility functions and configurations
+└── assets/             # Static images, icons, and fonts
+```
+
+---
+
+## 🏗 Key Components Highlight
+
+- **ProtectedRoute**: Ensures application security by redirecting unauthenticated users.
+- **Hero Section**: Designed to "WOW" users at first glance with vibrant gradients and engaging copy.
+- **LessonSidebar**: Navigate course content seamlessly while watching videos.
+
+---
+
+## 📄 License
+
+This project is [UNLICENSED](LICENSE).

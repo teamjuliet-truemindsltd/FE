@@ -6,7 +6,7 @@ import {
   Users, BookOpen, GraduationCap, TrendingUp, Award, Clock, ArrowUpRight, ArrowDownRight, Activity, Calendar
 } from 'lucide-react';
 import AppLayout from '../components/layout/AppLayout';
-import { dashboardService, type DashboardData, type EnrollmentTrend } from '../services/dashboardService';
+import { dashboardService, type DashboardData } from '../services/dashboardService';
 
 const COLORS = ['#00f2fe', '#007adf', '#4f46e5', '#8b5cf6', '#ec4899'];
 
@@ -172,7 +172,7 @@ const AnalyticsDashboardPage: React.FC = () => {
                     paddingAngle={5}
                     dataKey="value"
                   >
-                    {[0, 1, 2].map((entry, index) => (
+                    {[0, 1, 2].map((_, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
@@ -241,7 +241,7 @@ const AnalyticsDashboardPage: React.FC = () => {
                   contentStyle={{ backgroundColor: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px' }}
                 />
                 <Bar dataKey="count" radius={[6, 6, 0, 0]}>
-                  {chartData.map((entry: any, index: number) => (
+                  {chartData.map((_: any, index: number) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Bar>
@@ -264,7 +264,7 @@ const AnalyticsDashboardPage: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <StatCard title="Courses Enrolled" value={stats.totalEnrolled} icon={<BookOpen className="w-5 h-5" />} />
-          <StatCard title="Completed" value={stats.completedCourses} icon={<CheckCircle className="w-5 h-5" className="text-emerald-400" />} />
+          <StatCard title="Completed" value={stats.completedCourses} icon={<CheckCircle className="w-5 h-5 text-emerald-400" />} />
           <StatCard title="Avg. Progress" value={`${stats.averageProgress}%`} icon={<Activity className="w-5 h-5" />} />
         </div>
 

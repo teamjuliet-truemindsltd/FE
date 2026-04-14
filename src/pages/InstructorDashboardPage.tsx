@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { Plus, BookOpen, Loader, Trash2, Eye, EyeOff, X, FolderPlus, Pencil, CheckCircle, FileText, Check, Award, AlertCircle, UploadCloud } from 'lucide-react';
 import { coursesService, type Course, type CreateCourseRequest, type CourseModule } from '../services/coursesService';
 import { lessonsService, type Lesson, type CreateLessonRequest, ContentType } from '../services/lessonsService';
@@ -83,7 +84,7 @@ export const InstructorDashboardPage: React.FC = () => {
     try {
       setCreatingCourse(true);
       const newCourse = await coursesService.createCourse(courseForm);
-      setCourses(prev => [newCourse, ...prev]);
+      setCourses((prev: Course[]) => [newCourse, ...prev]);
       setCourseForm({ title: '', description: '', isPublished: false });
       setShowCreateCourse(false);
     } catch (err) {
@@ -97,7 +98,7 @@ export const InstructorDashboardPage: React.FC = () => {
     if (!confirm('Are you sure you want to delete this course?')) return;
     try {
       await coursesService.deleteCourse(courseId);
-      setCourses(prev => prev.filter(c => c.id !== courseId));
+      setCourses((prev: Course[]) => prev.filter((c: Course) => c.id !== courseId));
       if (selectedCourse?.id === courseId) {
         setSelectedCourse(null);
         setModules([]);
@@ -110,7 +111,7 @@ export const InstructorDashboardPage: React.FC = () => {
   const handleTogglePublish = async (course: Course) => {
     try {
       const updated = await coursesService.updateCourse(course.id, { isPublished: !course.isPublished });
-      setCourses(prev => prev.map(c => c.id === course.id ? { ...c, isPublished: updated.isPublished } : c));
+      setCourses((prev: Course[]) => prev.map((c: Course) => c.id === course.id ? { ...c, isPublished: updated.isPublished } : c));
     } catch (err) {
       alert(err instanceof Error ? err.message : 'Failed to update course');
     }
@@ -122,8 +123,8 @@ export const InstructorDashboardPage: React.FC = () => {
     try {
       setUpdatingCourse(true);
       const updated = await coursesService.updateCourse(editingCourse.id, editForm);
-      setCourses(prev => prev.map(c => c.id === editingCourse.id ? updated : c));
-      setSelectedCourse(prev => prev?.id === updated.id ? updated : prev);
+      setCourses((prev: Course[]) => prev.map((c: Course) => c.id === editingCourse.id ? updated : c));
+      setSelectedCourse((prev: Course | null) => prev?.id === updated.id ? updated : prev);
       setEditingCourse(null);
     } catch (err) {
       alert(err instanceof Error ? err.message : 'Failed to update course');
@@ -169,7 +170,7 @@ export const InstructorDashboardPage: React.FC = () => {
     try {
       setAddingModule(true);
       const mod = await coursesService.addModule(selectedCourse.id, { title: moduleTitle, order: modules.length });
-      setModules(prev => [...prev, mod]);
+      setModules((prev: CourseModule[]) => [...prev, mod]);
       setModuleTitle('');
     } catch (err) {
       alert(err instanceof Error ? err.message : 'Failed to add module');
@@ -183,7 +184,7 @@ export const InstructorDashboardPage: React.FC = () => {
     try {
       setAddingLesson(true);
       const newLesson = await lessonsService.createLesson(moduleId, lessonForm);
-      setModuleLessons(prev => ({
+      setModuleLessons((prev: Record<string, Lesson[]>) => ({
         ...prev,
         [moduleId]: [...(prev[moduleId] || []), newLesson]
       }));
@@ -210,7 +211,7 @@ export const InstructorDashboardPage: React.FC = () => {
       setIsUploadingVideo(true);
       setUploadError(null);
       const response = await mediaService.uploadVideo(file);
-      setLessonForm(prev => ({ 
+      setLessonForm((prev: CreateLessonRequest) => ({ 
         ...prev, 
         contentUrl: response.url,
         contentType: ContentType.VIDEO // Auto-set to video upon upload
@@ -226,9 +227,9 @@ export const InstructorDashboardPage: React.FC = () => {
     if (!confirm('Are you sure you want to delete this lesson?')) return;
     try {
       await lessonsService.deleteLesson(lessonId);
-      setModuleLessons(prev => ({
+      setModuleLessons((prev: Record<string, Lesson[]>) => ({
         ...prev,
-        [moduleId]: prev[moduleId].filter(l => l.id !== lessonId)
+        [moduleId]: prev[moduleId].filter((l: Lesson) => l.id !== lessonId)
       }));
     } catch (err) {
       alert(err instanceof Error ? err.message : 'Failed to delete lesson');
@@ -239,7 +240,7 @@ export const InstructorDashboardPage: React.FC = () => {
     if (!confirm('Are you sure you want to delete this module and all its lessons?')) return;
     try {
       await coursesService.deleteModule(moduleId);
-      setModules(prev => prev.filter(m => m.id !== moduleId));
+      setModules((prev: CourseModule[]) => prev.filter((m: CourseModule) => m.id !== moduleId));
       const nextLessons = { ...moduleLessons };
       delete nextLessons[moduleId];
       setModuleLessons(nextLessons);
@@ -253,7 +254,7 @@ export const InstructorDashboardPage: React.FC = () => {
     try {
       setIsUpdatingModule(true);
       const updated = await coursesService.updateModule(moduleId, { title: editModuleTitle });
-      setModules(prev => prev.map(m => m.id === moduleId ? updated : m));
+      setModules((prev: CourseModule[]) => prev.map((m: CourseModule) => m.id === moduleId ? updated : m));
       setEditingModuleId(null);
     } catch (err) {
       alert(err instanceof Error ? err.message : 'Failed to update module');
@@ -274,7 +275,7 @@ export const InstructorDashboardPage: React.FC = () => {
             courseId: selectedCourse.id,
             dueDate: new Date(assignmentForm.dueDate!).toISOString()
         });
-        setCourseAssignments(prev => [newAs, ...prev]);
+        setCourseAssignments((prev: Assignment[]) => [newAs, ...prev]);
         setShowAddAssignment(false);
         setAssignmentForm({ title: '', description: '', points: 100, dueDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0] });
     } catch (err) {
@@ -288,7 +289,7 @@ export const InstructorDashboardPage: React.FC = () => {
       if (!confirm('Are you sure you want to delete this assignment?')) return;
       try {
           await assignmentsService.deleteAssignment(id);
-          setCourseAssignments(prev => prev.filter(a => a.id !== id));
+          setCourseAssignments((prev: Assignment[]) => prev.filter((a: Assignment) => a.id !== id));
           if (selectedAssignment?.id === id) setSelectedAssignment(null);
       } catch (err) {
           alert('Failed to delete assignment');
@@ -314,7 +315,7 @@ export const InstructorDashboardPage: React.FC = () => {
       try {
           setIsGrading(true);
           const updated = await assignmentsService.gradeSubmission(gradingSubmission.id, gradeForm);
-          setSubmissions(prev => prev.map(s => s.id === updated.id ? { ...s, ...updated } : s));
+          setSubmissions((prev: Submission[]) => prev.map((s: Submission) => s.id === updated.id ? { ...s, ...updated } : s));
           setGradingSubmission(null);
           setGradeForm({ grade: 0, feedback: '' });
       } catch (err) {
@@ -352,7 +353,7 @@ export const InstructorDashboardPage: React.FC = () => {
               <input
                 type="text"
                 value={courseForm.title}
-                onChange={(e) => setCourseForm(prev => ({ ...prev, title: e.target.value }))}
+                onChange={(e) => setCourseForm((prev: CreateCourseRequest) => ({ ...prev, title: e.target.value }))}
                 placeholder="Course title"
                 className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-primary-teal text-sm outline-none"
               />
@@ -361,7 +362,7 @@ export const InstructorDashboardPage: React.FC = () => {
               <label className="block text-sm font-medium text-slate-300 mb-1.5">Description</label>
               <textarea
                 value={courseForm.description}
-                onChange={(e) => setCourseForm(prev => ({ ...prev, description: e.target.value }))}
+                onChange={(e) => setCourseForm((prev: CreateCourseRequest) => ({ ...prev, description: e.target.value }))}
                 placeholder="Course description"
                 rows={3}
                 className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-primary-teal text-sm outline-none resize-none"
@@ -371,7 +372,7 @@ export const InstructorDashboardPage: React.FC = () => {
               <input
                 type="checkbox"
                 checked={courseForm.isPublished}
-                onChange={(e) => setCourseForm(prev => ({ ...prev, isPublished: e.target.checked }))}
+                onChange={(e) => setCourseForm((prev: CreateCourseRequest) => ({ ...prev, isPublished: e.target.checked }))}
                 className="rounded border-slate-600 bg-slate-800 text-primary-teal"
               />
               <span className="text-sm text-slate-300">Publish immediately</span>

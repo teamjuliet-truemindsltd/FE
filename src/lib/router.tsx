@@ -15,6 +15,7 @@ import DiscussionsPage from '../pages/DiscussionsPage';
 import InstructorDashboardPage from '../pages/InstructorDashboardPage';
 import LandingPage from '../pages/LandingPage';
 import TeamsPage from '../pages/TeamsPage';
+import AnalyticsDashboardPage from '../pages/AnalyticsDashboardPage';
 
 const Router: React.FC = () => {
   const { isAuthenticated, user, isLoading, getCurrentUser } = useAuthStore();
@@ -79,6 +80,7 @@ const Router: React.FC = () => {
         <Route path="/lessons/:id" element={<ProtectedRoute><LessonViewerPage /></ProtectedRoute>} />
         <Route path="/discussions" element={<ProtectedRoute><DiscussionsPage /></ProtectedRoute>} />
         <Route path="/instructor" element={<ProtectedRoute><InstructorDashboardPage /></ProtectedRoute>} />
+        <Route path="/analytics" element={<ProtectedRoute><AnalyticsDashboardPage /></ProtectedRoute>} />
 
         {/* Catch all */}
         <Route path="*" element={<Navigate to={isAuthenticated ? '/dashboard' : '/'} />} />

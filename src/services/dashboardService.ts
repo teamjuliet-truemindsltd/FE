@@ -1,5 +1,10 @@
 import { apiClient } from '../lib/apiClient';
 
+export interface EnrollmentTrend {
+  date: string;
+  count: number;
+}
+
 export interface StudentDashboard {
   role: 'STUDENT';
   stats: {
@@ -24,6 +29,7 @@ export interface InstructorDashboard {
     uniqueStudents: number;
     mostPopularCourse: string;
   };
+  enrollmentTrends: EnrollmentTrend[];
 }
 
 export interface AdminDashboard {
@@ -35,6 +41,7 @@ export interface AdminDashboard {
     totalCourses: number;
     totalEnrollments: number;
   };
+  enrollmentTrends: EnrollmentTrend[];
 }
 
 export type DashboardData = StudentDashboard | InstructorDashboard | AdminDashboard;

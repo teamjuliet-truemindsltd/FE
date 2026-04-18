@@ -7,7 +7,6 @@ import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import VerifyOtpPage from '../pages/VerifyOtpPage';
 import ForgotPasswordPage from '../pages/ForgotPasswordPage';
-import ResetPasswordPage from '../pages/ResetPasswordPage';
 import DashboardPage from '../pages/DashboardPage';
 import CoursesPage from '../pages/CoursesPage';
 import CourseDetailsPage from '../pages/CourseDetailsPage';
@@ -78,7 +77,7 @@ const Router: React.FC = () => {
         <Route path="/auth/register" element={isAuthenticated ? <Navigate to="/dashboard" /> : <RegisterPage />} />
         <Route path="/auth/verify-otp" element={isAuthenticated ? <Navigate to="/dashboard" /> : <VerifyOtpPage />} />
         <Route path="/auth/forgot-password" element={isAuthenticated ? <Navigate to="/dashboard" /> : <ForgotPasswordPage />} />
-        <Route path="/auth/reset-password" element={isAuthenticated ? <Navigate to="/dashboard" /> : <ResetPasswordPage />} />
+        <Route path="/auth/reset-password" element={<Navigate to="/auth/forgot-password" />} />
 
         {/* Protected Routes */}
         <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />

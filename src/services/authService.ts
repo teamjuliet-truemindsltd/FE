@@ -43,6 +43,16 @@ export interface ResendOtpRequest {
   email: string;
 }
 
+export interface ForgotPasswordRequest {
+  email: string;
+}
+
+export interface ResetPasswordRequest {
+  email: string;
+  code: string;
+  newPassword: string;
+}
+
 class AuthService {
   async register(data: RegisterRequest): Promise<void> {
     try {
@@ -66,6 +76,24 @@ class AuthService {
   async resendOtp(data: ResendOtpRequest): Promise<void> {
     try {
       await apiClient.post('/auth/resend-otp', data);
+    } catch (error: unknown) {
+      throw this.handleError(error);
+    }
+  }
+
+  async forgotPassword(data: ForgotPasswordRequest): Promise<{ message: string }> {
+    try {
+      const response = await apiClient.post<{ message: string }>('/auth/forgot-password', data);
+      return response.data;
+    } catch (error: unknown) {
+      throw this.handleError(error);
+    }
+  }
+
+  async resetPassword(data: ResetPasswordRequest): Promise<{ message: string }> {
+    try {
+      const response = await apiClient.post<{ message: string }>('/auth/reset-password', data);
+      return response.data;
     } catch (error: unknown) {
       throw this.handleError(error);
     }

@@ -80,9 +80,14 @@ export const LoginPage: React.FC = () => {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-foreground/80 mb-2 transition-colors">
-                Password
-              </label>
+              <div className="flex items-center justify-between mb-2">
+                <label htmlFor="password" className="block text-sm font-medium text-foreground/80 transition-colors">
+                  Password
+                </label>
+                <Link to="/auth/forgot-password" className="text-xs text-primary-teal hover:text-primary-teal/80 font-semibold transition">
+                  Forgot password?
+                </Link>
+              </div>
               <input
                 id="password"
                 type="password"

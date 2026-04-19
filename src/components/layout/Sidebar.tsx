@@ -7,7 +7,6 @@ import {
   BookOpen,
   GraduationCap,
   MessageSquare,
-  Settings,
   ChevronLeft,
   ChevronRight,
   BarChart2,
@@ -29,19 +28,22 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
   const navItems = user ? [
     { path: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { path: '/courses', label: 'Explore Courses', icon: BookOpen },
-    { path: '/my-courses', label: 'My Learning', icon: GraduationCap },
-    { path: '/my-submissions', label: 'My Submissions', icon: FileText },
+    // For instructors, "My Learning" becomes "My Courses" (their created courses)
+    ...(isInstructor || isAdmin
+      ? [{ path: '/instructor', label: 'My Courses', icon: GraduationCap }]
+      : [
+          { path: '/my-courses', label: 'My Learning', icon: GraduationCap },
+          { path: '/my-submissions', label: 'My Submissions', icon: FileText },
+        ]),
     { path: '/analytics', label: 'Analytics', icon: BarChart2 },
     { path: '/discussions', label: 'Discussions', icon: MessageSquare },
+    ...(isInstructor || isAdmin
+      ? [{ path: '/instructor/submissions', label: 'All Submissions', icon: ClipboardList }]
+      : []),
   ] : [
     { path: '/courses', label: 'Explore Courses', icon: BookOpen },
     { path: '/analytics', label: 'Analytics', icon: BarChart2 },
   ];
-
-  if (isInstructor || isAdmin) {
-    navItems.push({ path: '/instructor', label: 'Instructor Panel', icon: Settings });
-    navItems.push({ path: '/instructor/submissions', label: 'All Submissions', icon: ClipboardList });
-  }
 
   const isActive = (path: string) => {
     if (path === '/dashboard') return location.pathname === '/dashboard';
